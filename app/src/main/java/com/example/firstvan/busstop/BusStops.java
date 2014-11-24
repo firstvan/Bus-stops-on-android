@@ -1,5 +1,7 @@
 package com.example.firstvan.busstop;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,6 +35,7 @@ public class BusStops extends FragmentActivity {
     private static myProcessing bs;
     private ArrayList<Megallok> megallok;
     private HashSet<String> m;
+    private String actual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,7 @@ public class BusStops extends FragmentActivity {
 
         megallok = bs.getJaratok();
         m = bs.getJaratNev();
-        
+
     }
 
     @Override
@@ -80,10 +83,14 @@ public class BusStops extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item)
     {
        mMap.clear();
-       drawOut(item.getTitle().toString());
+        actual = item.getTitle().toString();
+       drawOut(actual);
 
         return true;
     }
+
+
+
 
     public void drawOut(String a){
 
@@ -94,6 +101,8 @@ public class BusStops extends FragmentActivity {
             }
         }
     }
+
+
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
      * installed) and the map has not already been instantiated.. This will ensure that we only ever
@@ -129,6 +138,8 @@ public class BusStops extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
+        if(actual != null)
+            drawOut(actual);
         //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
     }
 }
