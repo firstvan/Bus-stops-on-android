@@ -42,7 +42,7 @@ public class BusStops extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_stops);
         setUpMapIfNeeded();
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(47.532133, 21.624194), 14));
+
         try {
             bs = new myProcessing(getApplicationContext().getAssets());
         }
@@ -138,8 +138,7 @@ public class BusStops extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        if(actual != null)
-            drawOut(actual);
-        //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(47.532133, 21.624194), 14));
+
     }
 }
